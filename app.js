@@ -16,12 +16,7 @@ document.querySelectorAll('.calc-btn').forEach(button => {
 ;
 
             try {
-                let logs = localStorage.getItem('logs');
-                logs = logs ? JSON.parse(logs) : [];
-                logs.push({ calculation: result.value, date: new Date() });
-                localStorage.setItem('logs', JSON.stringify(logs));
-
-                result.value = `${eval(result.value.replaceAll('×', '*').replaceAll('÷', '/'))}`;
+                result.value += `= ${eval(result.value.replaceAll('×', '*').replaceAll('÷', '/'))}`;
 
                 let numCalc = localStorage.getItem('numCalc')
                 if (numCalc) {
@@ -40,6 +35,11 @@ document.querySelectorAll('.calc-btn').forEach(button => {
                 }
                 console.error(e);
             }
+            let logs = localStorage.getItem('logs');
+            logs = logs ? JSON.parse(logs) : [];
+            logs.push({ calculation: result.value, date: new Date() });
+            localStorage.setItem('logs', JSON.stringify(logs));
+
         } else {
             result.value += button.innerText;
         }
@@ -48,7 +48,13 @@ document.querySelectorAll('.calc-btn').forEach(button => {
 
 document.getElementById('save-history').addEventListener('click', function () {
     // open a save as dialog
-    const logs = JSON.parse(localStorage.logs) ?? [];
+    let logs = JSON.parse(localStorage.logs) ?? [];
+    logs = logs.map(x => {
+        return {
+            calculation: x.calculation,
+            date: new Date(x.date)
+        }
+    });
     let logsTxt = '';
     logs.forEach(log => {
         logsTxt += `${log.date.toLocaleString('en-ca')} - ${log.calculation}\n`;
