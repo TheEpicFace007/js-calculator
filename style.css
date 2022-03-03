@@ -1,0 +1,55 @@
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: hsl(103, 33%, 60%);
+    border-bottom: #222 solid 1px;
+}
+
+#num-calc {
+    align-self: flex-end;
+    margin-right: 10px;
+}
+
+#result {
+    align-self: flex-end;
+    margin-right: 10px;
+}
+
+.button-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 10px;
+}
+
+body {
+    background-color: beige;
+}
+
+.button {
+    height: 50px;
+    width: 50px;
+    border: #222 solid 1.6px;
+    background-color: hsl(103, 33%, 60%);
+    font-size: large;
+}
+
+#result {
+    font-size: x-large;
+    font-weight: bold;
+    color: #222;
+    width: 99%;
+    text-align: right;
+}
+
+h1 {
+    font-family: Atma, sans-serif;
+    padding-left: 10px;
+}
+
+h2 {
+    font-family: Atma, sans-serif;
+    padding-left: 10px;
+}
